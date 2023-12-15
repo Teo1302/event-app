@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 use App\Http\Controllers\EvenimentController;
+use App\Http\Controllers\SponsorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,4 +18,10 @@ use App\Http\Controllers\EvenimentController;
 Route::get('/', [EvenimentController::class, 'index']);
 // Rutele pentru resurse (CRUD)
 Route::resource('evenimente', EvenimentController::class);
+
+Route::get('/', [SponsorController::class, 'index']);
+Route::resource('sponsori', SponsorController::class);
+
+
+
 Route::get('/', function () {return view('welcome');});

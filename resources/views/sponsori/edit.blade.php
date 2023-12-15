@@ -1,0 +1,46 @@
+@extends('layouts.master')
+@section('content')
+    <div class="panel panel-default">
+        <div class="panel-heading"> Modificare informatii despre Sponsori</div>
+        <div class="panel-body">
+            <!—exista inregistrari in tabela Sponsori 
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <strong>Eroare:</strong>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <!—populez campurile formularului cu datele aferente din tabela Sponsori -->
+            {!! Form::model($sponsor, ['method' => 'PATCH','route' =>['sponsori.update', $sponsor->id]]) !!}
+            <div class="form-group">
+                <label for="nume">Nume</label>
+                <input type="text" name="nume" class="form-control" value="{{$sponsor->nume }}">
+            </div>
+            <div class="form-group">
+                <label for="descriere">Descriere</label>
+                <textarea name="descriere" class="form-control" rows="3">{{ $sponsor->descriere }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="contact">Contact</label>
+                <textarea name="contact" class="form-control" rows="3">{{ $sponsor->contact }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="adresa">Adresa</label>
+                <textarea name="adresa" class="form-control" rows="3">{{ $sponsor->adresa }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="eveniment_id">Eveniment_id</label>
+                <textarea name="eveniment_id" class="form-control" rows="3">{{ $sponsor->eveniment_id }}</textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvare Modificari" class="btn btn-info">
+                <a href="{{route('sponsori.index') }}" class="btn btn-default">Cancel</a>
+            </div>
+            {!! Form::close() !!}
+        </div>
+    </div>
+@endsection

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Sponsori;
-use App\Models\Evenimente;
+use App\Models\Sponsor;
+use App\Models\Eveniment;
+use Illuminate\Support\Facades\Session;
 
 class SponsorController extends Controller
 {
@@ -13,8 +14,8 @@ class SponsorController extends Controller
      */
     public function index()
     {
-        $sponsori = Sponsori::with('eveniment')->get();
-        return view('sponsori.index', ['sponsori' => $sponsori]);
+        $sponsori = Sponsor::with('eveniment')->get();
+        return view('sponsori.list', ['sponsori' => $sponsori]);
     }
 
     /**
@@ -22,7 +23,7 @@ class SponsorController extends Controller
      */
     public function create()
     {
-        $evenimente = Evenimente::all();
+        $evenimente = Eveniment::all();
         return view('sponsori.create', ['evenimente' => $evenimente]);
     }
 
@@ -34,12 +35,16 @@ class SponsorController extends Controller
         $request->validate([
             'nume' => 'required',
             'descriere' => 'required',
+            'contact' =>'required',
+            'adresa' =>'required',
             'eveniment_id' => 'required|exists:evenimente,id',
         ]);
 
-        Sponsori::create([
+        Sponsor::create([
             'nume' => $request->nume,
             'descriere' => $request->descriere,
+            'contact' => $request->contact,
+            'adresa' => $request->adresa,
             'eveniment_id' => $request->eveniment_id,
         ]);
 
@@ -51,7 +56,7 @@ class SponsorController extends Controller
      */
     public function show(string $id)
     {
-        $sponsor = Sponsori::with('eveniment')->findOrFail($id);
+        $sponsor = Sponsor::with('eveniment')->findOrFail($id);
         return view('sponsori.show', ['sponsor' => $sponsor]);
     }
 
@@ -60,8 +65,8 @@ class SponsorController extends Controller
      */
     public function edit(string $id)
     {
-        $sponsor = Sponsori::with('eveniment')->findOrFail($id);
-        $evenimente = Evenimente::all();
+        $sponsor = Sponsor::with('eveniment')->findOrFail($id);
+        $evenimente = Eveniment::all();
         return view('sponsori.edit', ['sponsor' => $sponsor, 'evenimente' => $evenimente]);
     }
 
@@ -73,13 +78,17 @@ class SponsorController extends Controller
         $request->validate([
             'nume' => 'required',
             'descriere' => 'required',
+            'contact' =>'required',
+            'adresa' =>'required',
             'eveniment_id' => 'required|exists:evenimente,id',
         ]);
 
-        $sponsor = Sponsori::findOrFail($id);
+        $sponsor = Sponsor::findOrFail($id);
         $sponsor->update([
             'nume' => $request->nume,
             'descriere' => $request->descriere,
+            'contact' => $request->contact,
+            'adresa' => $request->adresa,
             'eveniment_id' => $request->eveniment_id,
         ]);
 
@@ -91,7 +100,7 @@ class SponsorController extends Controller
      */
     public function destroy(string $id)
     {
-        $sponsor = Sponsori::findOrFail($id);
+        $sponsor = Sponsor::findOrFail($id);
         $sponsor->delete();
 
         return redirect()->route('sponsori.index')->with('success', 'Sponsor șters cu succes.');
