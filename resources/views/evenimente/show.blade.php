@@ -4,20 +4,25 @@
 @endphp
 @section('content')
     <div class="panel panel-default">
-        <div class="panel-heading">
-            View Task
-        </div>
+        <div class="panel-heading">View Eveniment</div>
         <div class="panel-body">
             <div class="pull-right">
-                <a class="btn btn-default" href="{{ route('tasks.index')
-}}">Inapoi</a>
+                <a class="btn btn-default" href="{{ route('evenimente.index')}}">Inapoi</a>
             </div>
             <div class="form-group">
-                <strong>Nume: </strong> {{ $task->name }}
+                <strong>Titlu: </strong> {{ $eveniment->titlu }}
             </div>
-            15
             <div class="form-group">
-                <strong>Descriere: </strong> {{ $task->description }}
+                <strong>Descriere: </strong> {{ $eveniment->descriere }}
+            </div>
+            <div class="form-group">
+                <strong>Data: </strong> {{ $eveniment->data }}
+            </div>
+            <div class="form-group">
+                <strong>Ora: </strong> {{ $eveniment->ora }}
+            </div>
+            <div class="form-group">
+                <strong>Locatie: </strong> {{ $eveniment->locatie }}
             </div>
         </div>
     </div>
