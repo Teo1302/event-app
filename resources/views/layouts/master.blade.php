@@ -18,11 +18,10 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Exemplu aplicatie-Laravel CRUD </a>
+                <a class="navbar-brand" href="#">Gestiune Evenimente</a>
             </div>
             <ul class="nav navbar-nav">
             </ul>
-            11
         </div>
     </nav>
     <head>

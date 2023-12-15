@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Models\Eveniment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class EvenimentController extends Controller
 {
