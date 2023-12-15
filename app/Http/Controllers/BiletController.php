@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Bilete;
-use App\Models\Evenimente;
+use App\Models\Bilet;
+use App\Models\Eveniment;
 
-class BileteController extends Controller
+class BiletController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $bilete = Bilete::with('eveniment')->get();
+        $bilete = Bilet::with('eveniment')->get();
         return view('bilete.index', ['bilete' => $bilete]);
     }
 
@@ -22,7 +22,7 @@ class BileteController extends Controller
      */
     public function create()
     {
-        $evenimente = Evenimente::all();
+        $evenimente = Eveniment::all();
         return view('bilete.create', ['evenimente' => $evenimente]);
     }
 
@@ -38,7 +38,7 @@ class BileteController extends Controller
             'eveniment_id' => 'required|exists:evenimente,id',
         ]);
 
-        Bilete::create([
+        Bilet::create([
             'tip_bilet' => $request->tip_bilet,
             'pret' => $request->pret,
             'cantitate' => $request->cantitate,
@@ -53,7 +53,7 @@ class BileteController extends Controller
      */
     public function show(string $id)
     {
-        $bilet = Bilete::with('eveniment')->findOrFail($id);
+        $bilet = Bilet::with('eveniment')->findOrFail($id);
         return view('bilete.show', ['bilet' => $bilet]);
     }
 
@@ -62,8 +62,8 @@ class BileteController extends Controller
      */
     public function edit(string $id)
     {
-        $bilet = Bilete::with('eveniment')->findOrFail($id);
-        $evenimente = Evenimente::all();
+        $bilet = Bilet::with('eveniment')->findOrFail($id);
+        $evenimente = Eveniment::all();
         return view('bilete.edit', ['bilet' => $bilet, 'evenimente' => $evenimente]);
     }
 
@@ -80,7 +80,7 @@ class BileteController extends Controller
             'eveniment_id' => 'required|exists:evenimente,id',
         ]);
 
-        $bilet = Bilete::findOrFail($id);
+        $bilet = Bilet::findOrFail($id);
         $bilet->update([
             'tip_bilet' => $request->tip_bilet,
             'pret' => $request->pret,
@@ -96,7 +96,7 @@ class BileteController extends Controller
      */
     public function destroy(string $id)
     {
-        $bilet = Bilete::findOrFail($id);
+        $bilet = Bilet::findOrFail($id);
         $bilet->delete();
 
         return redirect()->route('bilete.index')->with('success', 'Bilet șters cu succes.');

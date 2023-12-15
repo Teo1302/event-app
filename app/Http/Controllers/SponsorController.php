@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Speakeri;
+use App\Models\Sponsori;
 use App\Models\Evenimente;
 
-class SpeakeriController extends Controller
+class SponsorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $speakeri = Speakeri::with('evenimente')->get();
-        return view('speakeri.index', ['speakeri' => $speakeri]);
+        $sponsori = Sponsori::with('eveniment')->get();
+        return view('sponsori.index', ['sponsori' => $sponsori]);
     }
 
     /**
@@ -23,7 +23,7 @@ class SpeakeriController extends Controller
     public function create()
     {
         $evenimente = Evenimente::all();
-        return view('speakeri.create', ['evenimente' => $evenimente]);
+        return view('sponsori.create', ['evenimente' => $evenimente]);
     }
 
     /**
@@ -33,17 +33,17 @@ class SpeakeriController extends Controller
     {
         $request->validate([
             'nume' => 'required',
-            'prezentare' => 'required',
+            'descriere' => 'required',
             'eveniment_id' => 'required|exists:evenimente,id',
         ]);
 
-        Speakeri::create([
+        Sponsori::create([
             'nume' => $request->nume,
-            'prezentare' => $request->prezentare,
+            'descriere' => $request->descriere,
             'eveniment_id' => $request->eveniment_id,
         ]);
 
-        return redirect()->route('speakeri.index')->with('success', 'Speaker creat cu succes.');
+        return redirect()->route('sponsori.index')->with('success', 'Sponsor creat cu succes.');
     }
 
     /**
@@ -51,8 +51,8 @@ class SpeakeriController extends Controller
      */
     public function show(string $id)
     {
-        $speaker = Speakeri::with('evenimente')->findOrFail($id);
-        return view('speakeri.show', ['speaker' => $speaker]);
+        $sponsor = Sponsori::with('eveniment')->findOrFail($id);
+        return view('sponsori.show', ['sponsor' => $sponsor]);
     }
 
     /**
@@ -60,9 +60,9 @@ class SpeakeriController extends Controller
      */
     public function edit(string $id)
     {
-        $speaker = Speakeri::with('evenimente')->findOrFail($id);
+        $sponsor = Sponsori::with('eveniment')->findOrFail($id);
         $evenimente = Evenimente::all();
-        return view('speakeri.edit', ['speaker' => $speaker, 'evenimente' => $evenimente]);
+        return view('sponsori.edit', ['sponsor' => $sponsor, 'evenimente' => $evenimente]);
     }
 
     /**
@@ -72,18 +72,18 @@ class SpeakeriController extends Controller
     {
         $request->validate([
             'nume' => 'required',
-            'prezentare' => 'required',
+            'descriere' => 'required',
             'eveniment_id' => 'required|exists:evenimente,id',
         ]);
 
-        $speaker = Speakeri::findOrFail($id);
-        $speaker->update([
+        $sponsor = Sponsori::findOrFail($id);
+        $sponsor->update([
             'nume' => $request->nume,
-            'prezentare' => $request->prezentare,
+            'descriere' => $request->descriere,
             'eveniment_id' => $request->eveniment_id,
         ]);
 
-        return redirect()->route('speakeri.index')->with('success', 'Speaker actualizat cu succes.');
+        return redirect()->route('sponsori.index')->with('success', 'Sponsor actualizat cu succes.');
     }
 
     /**
@@ -91,9 +91,9 @@ class SpeakeriController extends Controller
      */
     public function destroy(string $id)
     {
-        $speaker = Speakeri::findOrFail($id);
-        $speaker->delete();
+        $sponsor = Sponsori::findOrFail($id);
+        $sponsor->delete();
 
-        return redirect()->route('speakeri.index')->with('success', 'Speaker șters cu succes.');
+        return redirect()->route('sponsori.index')->with('success', 'Sponsor șters cu succes.');
     }
 }

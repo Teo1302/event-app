@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Sponsori;
-use App\Models\Evenimente;
+use App\Models\Speaker;
+use App\Models\Eveniment;
 
-class SponsoriController extends Controller
+class SpeakerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $sponsori = Sponsori::with('eveniment')->get();
-        return view('sponsori.index', ['sponsori' => $sponsori]);
+        $speakeri = Speaker::with('evenimente')->get();
+        return view('speakeri.index', ['speakeri' => $speakeri]);
     }
 
     /**
@@ -22,10 +22,9 @@ class SponsoriController extends Controller
      */
     public function create()
     {
-        $evenimente = Evenimente::all();
-        return view('sponsori.create', ['evenimente' => $evenimente]);
+        $evenimente = Eveniment::all();
+        return view('speakeri.create', ['evenimente' => $evenimente]);
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -33,17 +32,17 @@ class SponsoriController extends Controller
     {
         $request->validate([
             'nume' => 'required',
-            'descriere' => 'required',
+            'prezentare' => 'required',
             'eveniment_id' => 'required|exists:evenimente,id',
         ]);
 
-        Sponsori::create([
+        Speaker::create([
             'nume' => $request->nume,
-            'descriere' => $request->descriere,
+            'prezentare' => $request->prezentare,
             'eveniment_id' => $request->eveniment_id,
         ]);
 
-        return redirect()->route('sponsori.index')->with('success', 'Sponsor creat cu succes.');
+        return redirect()->route('speakeri.index')->with('success', 'Speaker creat cu succes.');
     }
 
     /**
@@ -51,8 +50,8 @@ class SponsoriController extends Controller
      */
     public function show(string $id)
     {
-        $sponsor = Sponsori::with('eveniment')->findOrFail($id);
-        return view('sponsori.show', ['sponsor' => $sponsor]);
+        $speaker = Speaker::with('evenimente')->findOrFail($id);
+        return view('speakeri.show', ['speaker' => $speaker]);
     }
 
     /**
@@ -60,9 +59,9 @@ class SponsoriController extends Controller
      */
     public function edit(string $id)
     {
-        $sponsor = Sponsori::with('eveniment')->findOrFail($id);
-        $evenimente = Evenimente::all();
-        return view('sponsori.edit', ['sponsor' => $sponsor, 'evenimente' => $evenimente]);
+        $speaker = Speaker::with('evenimente')->findOrFail($id);
+        $evenimente = Eveniment::all();
+        return view('speakeri.edit', ['speaker' => $speaker, 'evenimente' => $evenimente]);
     }
 
     /**
@@ -72,18 +71,18 @@ class SponsoriController extends Controller
     {
         $request->validate([
             'nume' => 'required',
-            'descriere' => 'required',
+            'prezentare' => 'required',
             'eveniment_id' => 'required|exists:evenimente,id',
         ]);
 
-        $sponsor = Sponsori::findOrFail($id);
-        $sponsor->update([
+        $speaker = Speaker::findOrFail($id);
+        $speaker->update([
             'nume' => $request->nume,
-            'descriere' => $request->descriere,
+            'prezentare' => $request->prezentare,
             'eveniment_id' => $request->eveniment_id,
         ]);
 
-        return redirect()->route('sponsori.index')->with('success', 'Sponsor actualizat cu succes.');
+        return redirect()->route('speakeri.index')->with('success', 'Speaker actualizat cu succes.');
     }
 
     /**
@@ -91,9 +90,9 @@ class SponsoriController extends Controller
      */
     public function destroy(string $id)
     {
-        $sponsor = Sponsori::findOrFail($id);
-        $sponsor->delete();
+        $speaker = Speaker::findOrFail($id);
+        $speaker->delete();
 
-        return redirect()->route('sponsori.index')->with('success', 'Sponsor șters cu succes.');
+        return redirect()->route('speakeri.index')->with('success', 'Speaker șters cu succes.');
     }
 }

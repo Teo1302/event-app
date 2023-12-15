@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Agenda;
-use App\Models\Evenimente;
+use App\Models\Eveniment;
 
 class AgendaController extends Controller
 {
@@ -22,7 +22,7 @@ class AgendaController extends Controller
      */
     public function create()
     {
-        $evenimente = Evenimente::all();
+        $evenimente = Eveniment::all();
         return view('agenda.create', ['evenimente' => $evenimente]);
     }
 
@@ -65,7 +65,7 @@ class AgendaController extends Controller
     public function edit(string $id)
     {
         $agenda = Agenda::with('eveniment')->findOrFail($id);
-        $evenimente = Evenimente::all();
+        $evenimente = Eveniment::all();
         return view('agenda.edit', ['agenda' => $agenda, 'evenimente' => $evenimente]);
     }
 
