@@ -21,6 +21,9 @@
                 <a class="navbar-brand" href="#">Gestiune Evenimente</a>
             </div>
             <ul class="nav navbar-nav">
+                <li><a href="{{ route('pagina_goala') }}">Pagina Admin</a></li>
+                <li><a href="{{ route('pagina_utilizator') }}">Pagina Utilizator</a></li>
+                <!-- Adăugați alte butoane sau linkuri aici pentru alte pagini -->
             </ul>
         </div>
     </nav>

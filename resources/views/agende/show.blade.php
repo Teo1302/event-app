@@ -22,7 +22,7 @@
                 <strong>Ora_final: </strong> {{ $agenda->ora_final }}
             </div>
             <div class="form-group">
-                <strong>Eveniment: </strong> {{ $speaker->eveniment->titlu }}
+                <strong>Eveniment: </strong> {{ $agenda->eveniment->titlu }}
             </div>
         </div>
     </div>

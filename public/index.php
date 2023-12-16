@@ -2,6 +2,9 @@
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
+use App\Http\Controllers\EvenimentController;
+use App\Http\Controllers\PaginaUtilizatorController;
+
 
 define('LARAVEL_START', microtime(true));
 

@@ -32,7 +32,7 @@
                 <label for="eveniment_id">Eveniment</label>
                 <select name="eveniment_id" class="form-control">
                     @foreach($evenimente as $eveniment)
-                        <option value="{{ $eveniment->id }}" {{ $eveniment->id == $speaker->eveniment_id ? 'selected' : '' }}>
+                        <option value="{{ $eveniment->id }}" {{ $eveniment->id == $bilet->eveniment_id ? 'selected' : '' }}>
                             {{ $eveniment->titlu }}
                         </option>
                     @endforeach

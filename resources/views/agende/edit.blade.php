@@ -15,7 +15,7 @@
                 </div>
             @endif
             <!-- Populez câmpurile formularului cu datele aferente din tabela Agenda -->
-            {!! Form::model($speaker, ['method' => 'PATCH', 'route' => ['agende.update', $agenda->id]]) !!}
+            {!! Form::model($agenda, ['method' => 'PATCH', 'route' => ['agende.update', $agenda->id]]) !!}
             <div class="form-group">
                 <label for="titlu">Titlu</label>
                 <input type="text" name="titlu" class="form-control" value="{{ $agenda->titlu }}">

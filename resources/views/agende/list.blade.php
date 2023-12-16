@@ -29,8 +29,8 @@
                     <th>Eveniment</th>
                 </tr>
                 @php $i = 0 @endphp
-                @if (count($agende) > 0)
-                    @foreach ($agende as $key => $agenda)
+                @if (count($agenda) > 0)
+                    @foreach ($agenda as $key => $agenda)
                         <tr>
                             <td>{{ ++$i }}</td>
                             <td>{{ $agenda->ttilu }}</td>

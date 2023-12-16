@@ -33,9 +33,9 @@
                         <tr>
                             <td>{{ ++$i }}</td>
                             <td>{{ $bilet->tip_bilet }}</td>
-                            <td>{{ $speaker->pret }}</td>
-                            <td>{{ $speaker->cantitate }}</td>
-                            <td>{{ $speaker->eveniment->titlu }}</td>
+                            <td>{{ $bilet->pret }}</td>
+                            <td>{{ $bilet->cantitate }}</td>
+                            <td>{{ $bilet->eveniment->titlu }}</td>
                             <td>
                                 <a class="btn btn-success" href="{{ route('bilete.show', $bilet->id) }}">Vizualizare</a>
                                 <a class="btn btn-primary" href="{{ route('bilete.edit', $bilet->id) }}">Modificare</a>

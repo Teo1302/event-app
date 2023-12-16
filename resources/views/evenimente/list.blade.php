@@ -1,7 +1,7 @@
 @php
     use Illuminate\Support\Facades\Session;
 @endphp
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
     @if ($message = Session::get('success'))
         <div class="alert alert-success">

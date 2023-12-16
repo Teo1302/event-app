@@ -14,7 +14,7 @@ class BiletController extends Controller
     public function index()
     {
         $bilete = Bilet::with('eveniment')->get();
-        return view('bilete.index', ['bilete' => $bilete]);
+        return view('bilete.list', ['bilete' => $bilete]);
     }
 
     /**

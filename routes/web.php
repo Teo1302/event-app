@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\BiletController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\DashController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +39,12 @@ Route::get('/', [AgendaController::class, 'index']);
 Route::resource('agende', AgendaController::class);
 
 Route::get('/', [BiletController::class, 'index']);
-Route::resource('agende', BiletController::class);
+Route::resource('bilete', BiletController::class);
+
+
+Route::get('/pagina_goala', function () {return view('pagina_goala');})->name('pagina_goala');
+Route::get('/pagina_utilizator', function () {return view('pagina_utilizator');})->name('pagina_utilizator');
+
 
 
 Route::get('/', function () {return view('welcome');});
@@ -57,6 +62,13 @@ Route::middleware([
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('/', 'EvenimentController@index');
-    Route::resource('evenimente', 'EvenimentController');
+    Route::get('/', 'PaginaUtilizatorController@index');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

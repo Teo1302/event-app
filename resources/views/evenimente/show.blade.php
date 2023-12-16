@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @php    use Illuminate\Support\Facades\Session;
 @endphp
 @section('content')

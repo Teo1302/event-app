@@ -14,7 +14,7 @@ class AgendaController extends Controller
     public function index()
     {
         $agenda = Agenda::with('eveniment')->get();
-        return view('agenda.index', ['agenda' => $agenda]);
+        return view('agende.list', ['agenda' => $agenda]);
     }
 
     /**
@@ -23,7 +23,7 @@ class AgendaController extends Controller
     public function create()
     {
         $evenimente = Eveniment::all();
-        return view('agenda.create', ['evenimente' => $evenimente]);
+        return view('agende.create', ['evenimente' => $evenimente]);
     }
 
     /**
@@ -47,7 +47,7 @@ class AgendaController extends Controller
             'eveniment_id' => $request->eveniment_id,
         ]);
 
-        return redirect()->route('agenda.index')->with('success', 'Eveniment adăugat în agenda cu succes.');
+        return redirect()->route('agende.index')->with('success', 'Eveniment adăugat în agenda cu succes.');
     }
 
     /**
@@ -56,7 +56,7 @@ class AgendaController extends Controller
     public function show(string $id)
     {
         $agenda = Agenda::with('eveniment')->findOrFail($id);
-        return view('agenda.show', ['agenda' => $agenda]);
+        return view('agende.show', ['agenda' => $agenda]);
     }
 
     /**
@@ -66,7 +66,7 @@ class AgendaController extends Controller
     {
         $agenda = Agenda::with('eveniment')->findOrFail($id);
         $evenimente = Eveniment::all();
-        return view('agenda.edit', ['agenda' => $agenda, 'evenimente' => $evenimente]);
+        return view('agende.edit', ['agenda' => $agenda, 'evenimente' => $evenimente]);
     }
 
     /**
@@ -91,7 +91,7 @@ class AgendaController extends Controller
             'eveniment_id' => $request->eveniment_id,
         ]);
 
-        return redirect()->route('agenda.index')->with('success', 'Eveniment din agenda actualizat cu succes.');
+        return redirect()->route('agende.index')->with('success', 'Eveniment din agenda actualizat cu succes.');
     }
 
     /**
@@ -102,6 +102,6 @@ class AgendaController extends Controller
         $agenda = Agenda::findOrFail($id);
         $agenda->delete();
 
-        return redirect()->route('agenda.index')->with('success', 'Eveniment din agenda șters cu succes.');
+        return redirect()->route('agende.index')->with('success', 'Eveniment din agenda șters cu succes.');
     }
 }
