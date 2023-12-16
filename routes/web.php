@@ -6,6 +6,11 @@ use App\Http\Controllers\EvenimentController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\PartenerController;
 use App\Http\Controllers\SpeakerController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\BiletController;
+use App\Http\Controllers\HomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +35,12 @@ Route::resource('parteneri', PartenerController::class);
 Route::get('/', [SpeakerController::class, 'index']);
 Route::resource('speakeri', SpeakerController::class);
 
+Route::get('/', [AgendaController::class, 'index']);
+Route::resource('agende', AgendaController::class);
+
+Route::get('/', [BiletController::class, 'index']);
+Route::resource('agende', BiletController::class);
+
 
 Route::get('/', function () {return view('welcome');});
 
@@ -41,4 +52,11 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+Auth::routes();
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/', 'EvenimentController@index');
+    Route::resource('evenimente', 'EvenimentController');
 });
