@@ -15,10 +15,18 @@
                 </div>
             @endif
             <!-- Populez câmpurile formularului cu datele aferente din tabela Parteneri -->
-            {!! Form::model($partener, ['method' => 'PATCH', 'route' => ['parteneri.update', $partener->id]]) !!}
+            {!! Form::model($partener, ['method' => 'PATCH','route' =>['$parteneri.update', $partener->id]]) !!}
             <div class="form-group">
                 <label for="nume">Nume</label>
                 <input type="text" name="nume" class="form-control" value="{{ $partener->nume }}">
+            </div>
+            <div class="form-group">
+                <label for="contact">Contact</label>
+                <input type="text" name="contact" class="form-control" value="{{ $partener->contact }}">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" name="email" class="form-control" value="{{ $partener->email }}">
             </div>
             <div class="form-group">
                 <label for="descriere">Descriere</label>

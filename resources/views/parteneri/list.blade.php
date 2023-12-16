@@ -23,15 +23,19 @@
                 <tr>
                     <th width="20">Id</th>
                     <th>Nume</th>
+                    <th>Contact</th>
+                    <th>Email</th>
                     <th>Descriere</th>
                     <th>Eveniment</th>
                 </tr>
-
+                @php $i = 0 @endphp
                 @if (count($parteneri) > 0)
                     @foreach ($parteneri as $key => $partener)
                         <tr>
                             <td>{{ ++$i }}</td>
                             <td>{{ $partener->nume }}</td>
+                            <td>{{ $partener->contact }}</td>
+                            <td>{{ $partener->email }}</td>
                             <td>{{ $partener->descriere }}</td>
                             <td>{{ $partener->eveniment->titlu }}</td>
                             <td>
@@ -51,7 +55,6 @@
             </table>
 
             <!-- Introduce nr pagina -->
-            {{ $parteneri->render() }}
         </div>
     </div>
 @endsection

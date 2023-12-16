@@ -18,10 +18,22 @@
                 <label for="nume">Nume</label>
                 <input type="text" name="nume" class="form-control" value="{{ old('nume') }}">
             </div>
+                <div class="form-group">
+                    <label for="prenume">Prenume</label>
+                    <input type="text" name="prenume" class="form-control" value="{{ old('prenume') }}">
+                </div>
             <div class="form-group">
                 <label for="prezentare">Prezentare</label>
                 <textarea name="prezentare" class="form-control" rows="3">{{ old('prezentare') }}</textarea>
             </div>
+                <div class="form-group">
+                    <label for="telefon">Telefon</label>
+                    <input type="text" name="telefon" class="form-control" value="{{ old('telefon') }}">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" class="form-control" value="{{ old('email') }}">
+                </div>
             <div class="form-group">
                 <label for="eveniment_id">Eveniment</label>
                 <select name="eveniment_id" class="form-control">

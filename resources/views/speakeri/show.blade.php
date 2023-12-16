@@ -13,7 +13,16 @@
                 <strong>Nume: </strong> {{ $speaker->nume }}
             </div>
             <div class="form-group">
+                <strong>Prenume: </strong> {{ $speaker->prenume }}
+            </div>
+            <div class="form-group">
                 <strong>Prezentare: </strong> {{ $speaker->prezentare }}
+            </div>
+            <div class="form-group">
+                <strong>Telefon: </strong> {{ $speaker->telefon }}
+            </div>
+            <div class="form-group">
+                <strong>Email: </strong> {{ $speaker->email }}
             </div>
             <div class="form-group">
                 <strong>Eveniment: </strong> {{ $speaker->eveniment->titlu }}

@@ -26,7 +26,7 @@
                     <th>Descriere</th>
                     <th>Contact</th>
                     <th>Adresa</th>
-                    <th>Eveniment_id</th>
+                    <th>Eveniment</th>
                 </tr>
                 @php $i = 0 @endphp
                 @if (count($sponsori) > 0)
@@ -37,7 +37,7 @@
                             <td>{{ $sponsor->descriere }}</td>
                             <td>{{ $sponsor->contact}}</td>
                             <td>{{ $sponsor->adresa }}</td>
-                            <td>{{ $sponsor->eveniment_id }}</td>
+                            <td>{{ $sponsor->eveniment->titlu }}</td>
                             <td>
                                 <a class="btn btn-success" href="{{ route('sponsori.show', $sponsor->id) }}">Vizualizare</a>
                                 <a class="btn btn-primary" href="{{ route('sponsori.edit', $sponsor->id) }}">Modificare</a>

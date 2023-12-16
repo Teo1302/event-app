@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 use App\Http\Controllers\EvenimentController;
 use App\Http\Controllers\SponsorController;
+use App\Http\Controllers\PartenerController;
+use App\Http\Controllers\SpeakerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,21 @@ Route::resource('evenimente', EvenimentController::class);
 Route::get('/', [SponsorController::class, 'index']);
 Route::resource('sponsori', SponsorController::class);
 
+Route::get('/', [PartenerController::class, 'index']);
+Route::resource('parteneri', PartenerController::class);
+
+Route::get('/', [SpeakerController::class, 'index']);
+Route::resource('speakeri', SpeakerController::class);
 
 
 Route::get('/', function () {return view('welcome');});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

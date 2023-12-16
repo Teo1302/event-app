@@ -1,6 +1,5 @@
 @extends('layouts.master')
-@php
-    use Illuminate\Support\Facades\Session;
+@php    use Illuminate\Support\Facades\Session;
 @endphp
 @section('content')
     <div class="panel panel-default">

@@ -13,8 +13,8 @@ class SpeakerController extends Controller
      */
     public function index()
     {
-        $speakeri = Speaker::with('evenimente')->get();
-        return view('speakeri.index', ['speakeri' => $speakeri]);
+        $speakeri = Speaker::with('eveniment')->get();
+        return view('speakeri.list', ['speakeri' => $speakeri]);
     }
 
     /**
@@ -32,13 +32,19 @@ class SpeakerController extends Controller
     {
         $request->validate([
             'nume' => 'required',
+            'prenume' => 'required',
             'prezentare' => 'required',
+            'telefon' => 'required',
+            'email' => 'required',
             'eveniment_id' => 'required|exists:evenimente,id',
         ]);
 
         Speaker::create([
             'nume' => $request->nume,
+            'prenume' => $request->prenume,
             'prezentare' => $request->prezentare,
+            'telefon' => $request->telefon,
+            'email' => $request->email,
             'eveniment_id' => $request->eveniment_id,
         ]);
 
@@ -50,7 +56,7 @@ class SpeakerController extends Controller
      */
     public function show(string $id)
     {
-        $speaker = Speaker::with('evenimente')->findOrFail($id);
+        $speaker = Speaker::with('eveniment')->findOrFail($id);
         return view('speakeri.show', ['speaker' => $speaker]);
     }
 
@@ -59,7 +65,7 @@ class SpeakerController extends Controller
      */
     public function edit(string $id)
     {
-        $speaker = Speaker::with('evenimente')->findOrFail($id);
+        $speaker = Speaker::with('eveniment')->findOrFail($id);
         $evenimente = Eveniment::all();
         return view('speakeri.edit', ['speaker' => $speaker, 'evenimente' => $evenimente]);
     }
@@ -71,14 +77,20 @@ class SpeakerController extends Controller
     {
         $request->validate([
             'nume' => 'required',
+            'prenume' => 'required',
             'prezentare' => 'required',
+            'telefon' => 'required',
+            'email' => 'required',
             'eveniment_id' => 'required|exists:evenimente,id',
         ]);
 
         $speaker = Speaker::findOrFail($id);
         $speaker->update([
             'nume' => $request->nume,
+            'prenume' => $request->prenume,
             'prezentare' => $request->prezentare,
+            'telefon' => $request->telefon,
+            'email' => $request->email,
             'eveniment_id' => $request->eveniment_id,
         ]);
 

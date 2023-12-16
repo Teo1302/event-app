@@ -23,16 +23,22 @@
                 <tr>
                     <th width="20">Id</th>
                     <th>Nume</th>
+                    <th>Prenume</th>
                     <th>Prezentare</th>
+                    <th>Telefon</th>
+                    <th>Email</th>
                     <th>Eveniment</th>
                 </tr>
-
+                @php $i = 0 @endphp
                 @if (count($speakeri) > 0)
                     @foreach ($speakeri as $key => $speaker)
                         <tr>
                             <td>{{ ++$i }}</td>
                             <td>{{ $speaker->nume }}</td>
+                            <td>{{ $speaker->prenume }}</td>
                             <td>{{ $speaker->prezentare }}</td>
+                            <td>{{ $speaker->telefon }}</td>
+                            <td>{{ $speaker->email }}</td>
                             <td>{{ $speaker->eveniment->titlu }}</td>
                             <td>
                                 <a class="btn btn-success" href="{{ route('speakeri.show', $speaker->id) }}">Vizualizare</a>
@@ -51,7 +57,6 @@
             </table>
 
             <!-- Introduce nr pagina -->
-            {{ $speakeri->render() }}
         </div>
     </div>
 @endsection

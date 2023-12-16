@@ -21,8 +21,20 @@
                 <input type="text" name="nume" class="form-control" value="{{ $speaker->nume }}">
             </div>
             <div class="form-group">
+                <label for="prenume">Prenume</label>
+                <input type="text" name="prenume" class="form-control" value="{{ $speaker->prenume }}">
+            </div>
+            <div class="form-group">
                 <label for="prezentare">Prezentare</label>
                 <textarea name="prezentare" class="form-control" rows="3">{{ $speaker->prezentare }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="telefon">Telefon</label>
+                <input type="text" name="telefon" class="form-control" value="{{ $speaker->telefon }}">
+            </div>
+            <div class="form-group">
+                <label for="telefon">Email</label>
+                <input type="text" name="email" class="form-control" value="{{ $speaker->email }}">
             </div>
             <div class="form-group">
                 <label for="eveniment_id">Eveniment</label>

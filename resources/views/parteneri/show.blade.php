@@ -13,6 +13,12 @@
                 <strong>Nume: </strong> {{ $partener->nume }}
             </div>
             <div class="form-group">
+                <strong>Contact: </strong> {{ $partener->contact }}
+            </div>
+            <div class="form-group">
+                <strong>Email: </strong> {{ $partener->email }}
+            </div>
+            <div class="form-group">
                 <strong>Descriere: </strong> {{ $partener->descriere }}
             </div>
             <div class="form-group">
