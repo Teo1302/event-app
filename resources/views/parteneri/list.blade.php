@@ -15,7 +15,9 @@
         <div class="panel-body">
             <div class="form-group">
                 <div class="pull-right">
+                    @if(auth()->check() && auth()->user()->can('is-admin'))
                     <a href="/parteneri/create" class="btn btn-default">Adaugare Partener nou</a>
+                        @endif
                 </div>
             </div>
 
@@ -39,11 +41,13 @@
                             <td>{{ $partener->descriere }}</td>
                             <td>{{ $partener->eveniment->titlu }}</td>
                             <td>
+                                @if(auth()->check() && auth()->user()->can('is-admin'))
                                 <a class="btn btn-success" href="{{ route('parteneri.show', $partener->id) }}">Vizualizare</a>
                                 <a class="btn btn-primary" href="{{ route('parteneri.edit', $partener->id) }}">Modificare</a>
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['parteneri.destroy', $partener->id], 'style' => 'display:inline']) }}
                                 {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
                                 {{ Form::close() }}
+                                @endif
                             </td>
                         </tr>
                     @endforeach

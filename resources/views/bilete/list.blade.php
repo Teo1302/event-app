@@ -15,7 +15,9 @@
         <div class="panel-body">
             <div class="form-group">
                 <div class="pull-right">
+                    @if(auth()->check() && auth()->user()->can('is-admin'))
                     <a href="/bilete/create" class="btn btn-default">Adaugare Bilet nou</a>
+                        @endif
                 </div>
             </div>
 
@@ -37,11 +39,13 @@
                             <td>{{ $bilet->cantitate }}</td>
                             <td>{{ $bilet->eveniment->titlu }}</td>
                             <td>
+                                @if(auth()->check() && auth()->user()->can('is-admin'))
                                 <a class="btn btn-success" href="{{ route('bilete.show', $bilet->id) }}">Vizualizare</a>
                                 <a class="btn btn-primary" href="{{ route('bilete.edit', $bilet->id) }}">Modificare</a>
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['bilete.destroy', $bilet->id], 'style' => 'display:inline']) }}
                                 {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
                                 {{ Form::close() }}
+                                @endif
                             </td>
                         </tr>
                     @endforeach

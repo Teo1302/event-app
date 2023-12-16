@@ -15,7 +15,9 @@
         <div class="panel-body">
             <div class="form-group">
                 <div class="pull-right">
+                    @if(auth()->check() && auth()->user()->can('is-admin'))
                     <a href="/speakeri/create" class="btn btn-default">Adaugare Speaker nou</a>
+                    @endif
                 </div>
             </div>
 
@@ -41,11 +43,13 @@
                             <td>{{ $speaker->email }}</td>
                             <td>{{ $speaker->eveniment->titlu }}</td>
                             <td>
+                                @if(auth()->check() && auth()->user()->can('is-admin'))
                                 <a class="btn btn-success" href="{{ route('speakeri.show', $speaker->id) }}">Vizualizare</a>
                                 <a class="btn btn-primary" href="{{ route('speakeri.edit', $speaker->id) }}">Modificare</a>
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['speakeri.destroy', $speaker->id], 'style' => 'display:inline']) }}
                                 {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
                                 {{ Form::close() }}
+                                @endif
                             </td>
                         </tr>
                     @endforeach

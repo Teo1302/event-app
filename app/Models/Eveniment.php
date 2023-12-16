@@ -10,4 +10,8 @@ class Eveniment extends Model
     use HasFactory;
     protected $table = 'evenimente';
     public $fillable = ['id','titlu', 'descriere','data','ora','locatie'];
+    public function sponsori()
+    {
+        return $this->hasMany(Sponsori::class);
+    }
 }

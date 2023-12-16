@@ -14,7 +14,9 @@
         <div class="panel-body">
             <div class="form-group">
                 <div class="pull-right">
+                    @if(auth()->check() && auth()->user()->can('is-admin'))
                     <a href="/evenimente/create" class="btn btn-default">Adaugare Eveniment nou</a>
+                        @endif
                 </div>
             </div>
 
@@ -38,11 +40,13 @@
                             <td>{{ $eveniment->ora }}</td>
                             <td>{{ $eveniment->locatie }}</td>
                             <td>
+                                @if(auth()->check() && auth()->user()->can('is-admin'))
                                 <a class="btn btn-success" href="{{ route('evenimente.show', $eveniment->id) }}">Vizualizare</a>
                                 <a class="btn btn-primary" href="{{ route('evenimente.edit', $eveniment->id) }}">Modificare</a>
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['evenimente.destroy', $eveniment->id], 'style' => 'display:inline']) }}
                                 {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
                                 {{ Form::close() }}
+                                    @endif
                             </td>
                         </tr>
                     @endforeach

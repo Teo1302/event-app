@@ -72,3 +72,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware('is_admin')->group(function () {
+    // Your admin routes go here
+    Route::resource('sponsori', SponsorController::class)->only(['edit', 'show', 'create']);
+    Route::resource('parteneri', PartenerController::class)->only(['edit', 'show', 'create']);
+    Route::resource('speakeri', SpeakerController::class)->only(['edit', 'show', 'create']);
+    Route::resource('evenimente', EvenimentController::class)->only(['edit', 'show', 'create']);
+    Route::resource('agende', AgendaController::class)->only(['edit', 'show', 'create']);
+});
+
+
