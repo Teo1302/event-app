@@ -46,6 +46,12 @@
                                 {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
                                 {{ Form::close() }}
                                 @endif
+                                    <form action="{{ route('cart.addToCart', ['id' => $bilet->id]) }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="ticket_id" value="{{ $bilet->id }}">
+                                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                    </form>
+
                             </td>
                         </tr>
                     @endforeach

@@ -11,6 +11,8 @@ use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\BiletController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashController;
+use App\Http\Controllers\PaginaUtilizatorController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +47,12 @@ Route::resource('bilete', BiletController::class);
 Route::get('/pagina_goala', function () {return view('pagina_goala');})->name('pagina_goala');
 Route::get('/pagina_utilizator', function () {return view('pagina_utilizator');})->name('pagina_utilizator');
 
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.addToCart');
+Route::post('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.removeFromCart');
+Route::post('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.updateCart');
+
+
 
 
 Route::get('/', function () {return view('welcome');});
@@ -62,7 +70,7 @@ Route::middleware([
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('/', 'PaginaUtilizatorController@index');
+    Route::get('/', [PaginaUtilizatorController::class, 'index']);
 });
 
 Auth::routes();
