@@ -15,6 +15,10 @@ class BiletController extends Controller
     {
         $bilete = Bilet::with('eveniment')->get();
         return view('bilete.list', ['bilete' => $bilete]);
+        /**
+         * forma return view('bilete.list', compact('bilete')); e echivalenta cu forma
+         * return view('bilete.list', ['bilete' => $bilete]);
+         */
     }
 
     /**

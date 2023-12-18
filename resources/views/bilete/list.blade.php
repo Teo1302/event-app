@@ -30,7 +30,7 @@
                     <th>Eveniment</th>
                 </tr>
                 @php $i = 0 @endphp
-                @if (count($bilete) > 0)
+                @if ($bilete instanceof \Illuminate\Database\Eloquent\Collection && $bilete->count() > 0)
                     @foreach ($bilete as $key => $bilet)
                         <tr>
                             <td>{{ ++$i }}</td>

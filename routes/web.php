@@ -10,10 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\BiletController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DashController;
 use App\Http\Controllers\PaginaUtilizatorController;
 use App\Http\Controllers\CartController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,18 +49,16 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.addToCart');
 Route::post('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.removeFromCart');
 Route::post('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.updateCart');
-
+Route::post('/cart/viewCart/{id}', [CartController::class, 'viewCart'])->name('cart.viewCart');
 
 
 
 Route::get('/', function () {return view('welcome');});
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function ()
+{
+    Route::get('/dashboard', function ()
+    {
         return view('dashboard');
     })->name('dashboard');
 });

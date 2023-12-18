@@ -32,12 +32,17 @@ class CartController extends Controller
 
         $cartItems = session()->get('cart');
 
-
-        if (isset($cartItems[$id])) {
+        // Verifică dacă biletul este deja în coșul de cumpărături.
+        if (isset($cartItems[$id]))
+        {// Dacă da, actualizează cantitatea biletului.
+            //Pentru elementul identificat de cheia $id
+            // se verifică dacă există deja o cheie 'quantity'
+            //Dacă da, se adaugă 1 la valoarea existentă a 'quantity'
+            // dacă nu există, se setează 'quantity' la 1
             $cartItems[$id]['quantity'] = isset($cartItems[$id]['quantity']) ? $cartItems[$id]['quantity'] + 1 : 1;
-        } else {
-
-
+        } else
+        {
+         // Dacă nu, adaugă biletul în coșul de cumpărături cu detaliile asociate.
             $cartItems[$id] = [
                 'event' => $bilet->eveniment->titlu,
                 'tip_bilet' => $bilet->tip_bilet,
@@ -45,9 +50,9 @@ class CartController extends Controller
                 'quantity' => 1,
             ];
         }
-
+         // Actualizează coșul de cumpărături în sesiune cu noile modificări.
         session()->put('cart', $cartItems);
-
+// Redirectează înapoi către pagina anterioară și furnizează un mesaj de succes.
         return redirect()->back()->with('success', 'Ticket added in cart!');
     }
 
@@ -67,7 +72,8 @@ class CartController extends Controller
 
     public function updateCart(Request $request)
     {
-        if($request->id and $request->quantity) {
+        if($request->id and $request->quantity)
+        {
             $cartItems = session()->get('cart');
             $cartItems[$request->id]["quantity"] = $request->quantity;
             session()->put('cart', $cartItems);

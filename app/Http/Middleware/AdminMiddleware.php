@@ -18,7 +18,9 @@ class AdminMiddleware
     {
         // Check if the user is authenticated and is an administrator
         if (auth()->check() && auth()->user()->is_admin) {
+            // permite continuarea procesului adica requestului sa mearga mai departe
             return $next($request);
+
         }
 
         // If not an administrator, you can redirect to an error page or throw an exception

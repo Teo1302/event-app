@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lista Sarcini</title>
+    <title>Gestiune Evenimente</title>
     <!-- Bootstrap CSS File -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,7 +31,8 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="dropdown ms-auto me-5">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="cartDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    Cart <span class="badge bg-dark">
+                    Cart
+                    <span class="badge bg-dark">
             <?php
             $cartItems = session()->get('cart', []);
             $totalQuantity = 0;
@@ -44,7 +45,7 @@
 
             echo $totalQuantity;
             ?>
-        </span>
+                     </span>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="cartDropdown">
                     <?php foreach ($cartItems as $itemId => $item): ?>
@@ -86,9 +87,11 @@
                         <hr class="dropdown-divider">
                     </li>
                     <li>
-                        <a class="dropdown-item" href="">
-                            <span class="btn btn-dark w-100">Check Cart</span>
-                        </a>
+                        <form action="{{ route('cart.viewCart', ['id' => $itemId]) }}" method="POST" class="d-flex justify-content-end">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $itemId }}">
+                            <button type="submit" class="btn btn-danger w-100">Check Cart</button>
+                        </form>
                     </li>
 
                 </ul>
@@ -103,7 +106,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
 
 </body>
 </html>

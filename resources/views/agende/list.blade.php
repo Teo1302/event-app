@@ -6,6 +6,7 @@
 @section('content')
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
+            //{{ $message }} este o sintaxă Blade pentru a afișa variabile PHP în cadrul unui view
             <p>{{ $message }}</p>
         </div>
     @endif
